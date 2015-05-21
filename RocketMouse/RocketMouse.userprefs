@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MouseController.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\SceneDemo\Assets\SceneManagerDemo\Scripts\SMDemoIntro.cs">
     <Files>
-      <File FileName="Assets\Scripts\GeneratorScript.cs" Line="88" Column="1" />
-      <File FileName="Assets\Scripts\MouseController.cs" Line="46" Column="45" />
-      <File FileName="Assets\Scripts\ParallaxScroll.cs" Line="25" Column="76" />
+      <File FileName="..\SceneDemo\Assets\SceneManagerDemo\Scripts\SMDemoIntro.cs" Line="31" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
