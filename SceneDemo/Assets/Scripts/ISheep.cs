@@ -7,4 +7,5 @@ public interface ISheep
 	bool isTalking();
 	void SetBubbleVisible(bool visible);
 	void SetBubbleContent(string text);
+	void SetAudio2Play(string auPath);
 }

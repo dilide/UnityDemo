@@ -1,13 +1,23 @@
 <story>
 	<segment>
+		<talking></talking>
+		<shutup><sheep>boysheep</sheep><sheep>girlsheep</sheep></shutup>
+		<content></content>
+		<interval>0</interval>
+	</segment>
+	<segment>
 		<talking><sheep>boysheep</sheep></talking>
 		<shutup><sheep>girlsheep</sheep></shutup>
-		<content>测试字符串1</content>
+		<content>天主竟这样爱了世界，&#xA;甚至赐下自己的独生子，&#xA;使凡信仰祂的人不至丧亡，&#xA;反而活得永生</content>
+		<audio>Audio/Story-1-1-1</audio>
+		<interval>5</interval>
 	</segment>
 	<segment>
 		<talking><sheep>girlsheep</sheep></talking>
 		<shutup><sheep>boysheep</sheep></shutup>
-		<content>测试字符串2</content>
+		<content>轮到我说话了，&#xA;      哈哈哈哈哈&#xA;    哈哈哈哈</content>
+		<audio>Audio/Story-1-1-2</audio>
+		<interval>1</interval>
 	</segment>
 	<segment>
 		<talking></talking>
@@ -18,5 +28,12 @@
 		<talking><sheep>boysheep</sheep></talking>
 		<shutup><sheep>girlsheep</sheep></shutup>
 		<content>测试字符串3</content>
+		<audio>Audio/Story-1-1-3</audio>
+		<interval>10</interval>
+	</segment>
+	<segment>
+		<talking></talking>
+		<shutup><sheep>boysheep</sheep><sheep>girlsheep</sheep></shutup>
+		<content></content>
 	</segment>
 </story>

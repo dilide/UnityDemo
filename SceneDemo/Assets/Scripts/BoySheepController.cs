@@ -6,6 +6,7 @@ public class BoySheepController : MonoBehaviour, ISheep {
 	public GameObject sheepMouth;
 	public GameObject bubble;
 	private string content = "";
+	private AudioSource audio2Play = null;
 
 	// Use this for initialization
 	void Start () {
@@ -30,14 +31,16 @@ public class BoySheepController : MonoBehaviour, ISheep {
 			return;
 
 		GUIStyle style = new GUIStyle ();
-		style.fontSize = 30;
+		style.fontSize = 24;
 		style.fontStyle = FontStyle.Bold;
-		style.font.name = "";
+		style.font = (Font)Resources.Load("Fonts/WawaSC-Regular");
 		style.normal.textColor = Color.black;
 
 		Vector3 point = Camera.main.WorldToScreenPoint (bubble.transform.position);
+		Vector3 size = Camera.main.WorldToScreenPoint(bubble.transform.localScale);
 
-		Rect labelRect = new Rect (point.x - 180, point.y - 350, 600, 320);
+		Rect labelRect = new Rect (point.x - size.x*0.3f, point.y - size.y*1.0f, 10, size.y);
+//		Rect labelRect = new Rect (0, 0, 600, 320);
 		GUI.Label (labelRect, content, style);
 	}
 
@@ -46,6 +49,14 @@ public class BoySheepController : MonoBehaviour, ISheep {
 	{
 		talking = bTalk;
 		sheepMouth.GetComponent<Animator> ().SetBool("isTalking",talking);
+		
+		if (talking == false) {
+			if(audio2Play != null)
+			{
+				audio2Play.Stop();
+				audio2Play.clip = null;
+			}
+		}
 	}
 	
 	public bool isTalking()
@@ -61,5 +72,19 @@ public class BoySheepController : MonoBehaviour, ISheep {
 	public void SetBubbleContent(string text)
 	{
 		content = text;
+	}
+	
+	public void SetAudio2Play(string auPath){
+		if (audio2Play == null) {
+			audio2Play = (AudioSource)gameObject.AddComponent <AudioSource>();
+			audio2Play.loop = false;
+		}
+		
+		AudioClip clip = (AudioClip)Resources.Load(auPath);
+		if (clip == null)
+			return;
+
+		audio2Play.clip = clip;
+		audio2Play.Play ();
 	}
 }

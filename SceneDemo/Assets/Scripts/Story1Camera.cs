@@ -7,71 +7,26 @@ public class Story1Camera : MonoBehaviour {
 	public GameObject girlSheep;
 	public GameObject boySheep;
 	public float lastTouchTime = 0;
-	public float touchInterval = 2;
 
-	public Story story;
-	
-	// Following method is used to retrive the relative path as device platform
-	private string getPath(){
-		#if UNITY_EDITOR
-		return Application.dataPath;
-		#elif UNITY_ANDROID
-		return Application.persistentDataPath;
-		#elif UNITY_IPHONE
-		return GetiPhoneDocumentsPath()+"/";
-		#else
-		return Application.dataPath +"/";
-		#endif
-	}
+	public Story story = null;
 	
 	void LoadStory()
 	{
 		XmlDocument doc = new XmlDocument ();
-		string strPath = getPath() + "/Res/Story1/story.xml";
-		doc.Load (strPath);
+		TextAsset textStory = (TextAsset)Resources.Load ("story/story-1");
+		doc.LoadXml (textStory.text);
 		XmlElement eleDoc = doc.DocumentElement;
 
 		if (eleDoc == null)
 			return;
 
-		XmlElement eleSegment = eleDoc["segment"];
-		while (eleSegment != null) {
-			StorySegment seg = new StorySegment();
-
-			XmlElement eleTalking = eleSegment["talking"];
-			if(eleTalking != null)
-			{
-				XmlElement sheep = (XmlElement)eleTalking.FirstChild;
-				while(sheep != null)
-				{
-					seg.talking.Add(sheep.InnerText);
-					sheep = (XmlElement)sheep.NextSibling;
-				}
-			}
-
-			XmlElement eleShutup = eleSegment["shutup"];
-			if(eleShutup != null)
-			{
-				XmlElement sheep = (XmlElement)eleShutup.FirstChild;
-				while(sheep != null)
-				{
-					seg.shutup.Add(sheep.InnerText);
-					sheep = (XmlElement)sheep.NextSibling;
-				}
-			}
-
-			seg.content = eleSegment["content"].InnerText;
-
-			story.segments.Add(seg);
-			eleSegment = (XmlElement)eleSegment.NextSibling;
-		}
+		story = new Story (eleDoc);
 
 		PlayNext ();
 	}
 
 	// Use this for initialization
 	void Start () {
-		story = new Story ();
 		LoadStory ();
 	}
 
@@ -82,18 +37,17 @@ public class Story1Camera : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		if (story == null)
+			return;
+
+		if (story.CurrentSegment == null)
+			return;
+
 		bool touched = Input.GetButton ("Fire1");
-		if (touched && (lastTouchTime + touchInterval) < Time.time) {
+
+		if (touched && (lastTouchTime + story.CurrentSegment.interval) < Time.time) {
 			lastTouchTime = Time.time;
 			PlayNext();
-		}
-	}
-
-	void OnGUI()
-	{
-		StorySegment seg = story.CurrentSegment;
-		if (seg != null) {
-			Debug.Log (seg.content);
 		}
 	}
 
@@ -116,6 +70,7 @@ public class Story1Camera : MonoBehaviour {
 					s.Talk(true);
 					s.SetBubbleVisible(true);
 					s.SetBubbleContent(seg.content);
+					s.SetAudio2Play(seg.audio);
 				}
 			}
 		}
