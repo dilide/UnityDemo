@@ -5,7 +5,7 @@ public class MainCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -20,6 +20,7 @@ public class MainCamera : MonoBehaviour {
 		if (!sunActive) {
 			return;
 		}
+
 		Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		Vector2 touchPos = new Vector2(wp.x, wp.y);
 		

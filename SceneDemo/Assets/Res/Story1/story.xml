@@ -1,0 +1,22 @@
+<story>
+	<segment>
+		<talking><sheep>boysheep</sheep></talking>
+		<shutup><sheep>girlsheep</sheep></shutup>
+		<content>测试字符串1</content>
+	</segment>
+	<segment>
+		<talking><sheep>girlsheep</sheep></talking>
+		<shutup><sheep>boysheep</sheep></shutup>
+		<content>测试字符串2</content>
+	</segment>
+	<segment>
+		<talking></talking>
+		<shutup><sheep>boysheep</sheep><sheep>girlsheep</sheep></shutup>
+		<content></content>
+	</segment>
+	<segment>
+		<talking><sheep>boysheep</sheep></talking>
+		<shutup><sheep>girlsheep</sheep></shutup>
+		<content>测试字符串3</content>
+	</segment>
+</story>
