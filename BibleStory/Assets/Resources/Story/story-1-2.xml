@@ -1,0 +1,46 @@
+<story>
+	<segment>
+		<talking>
+			<person>
+				<name>lele</name>
+				<audio>Audio/Story1/2-1</audio>
+				<content>一切的开始，天主创造世界</content>
+			</person>
+		</talking>
+		<players>
+			<player>
+				<name>light</name>
+				<playing>false</playing>
+			</player>
+		</players>
+	</segment>
+	<segment>
+		<talking>
+			<person>
+				<name>lele</name>
+				<audio>Audio/Story1/2-2</audio>
+				<content>在最最开始的时候啊，天主创造了天地，大地上一片荒凉，什么都没有。天主的神在水面上飞翔。</content>
+			</person>
+		</talking>
+	</segment>
+
+	<segment>
+		<talking>
+			<person>
+				<name>lele</name>
+				<audio>Audio/Story1/2-3</audio>
+				<content>天主说：有光！于是就有了光。天主看见光好。天主把光和黑暗分开。祂对光说：你是白天。又对黑暗说：你是黑夜。天主看了看白天和黑夜，点点头说 嗯～好。过了晚上，过了早晨，这样就有了第一天，天主真的是太伟大了。</content>
+				<fontsize>50</fontsize>
+			</person>
+		</talking>
+	</segment>
+
+	<segment>
+		<players>
+			<player>
+				<name>light</name>
+				<playing>true</playing>
+			</player>
+		</players>
+	</segment>
+</story>

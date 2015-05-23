@@ -1,0 +1,12 @@
+<story>
+	<segment>
+		<talking>
+			<person>
+				<name>lele</name>
+				<audio>Audio/Story1/4-1</audio>
+				<content>天主说：水都汇聚在一起。这样干地就出现了。天主对干地说：你是陆地。天主对汇集到一起的水说：你是海洋。天主看了看陆地和海洋觉得很好，满意的点点头。（嗯～～）</content>
+				<fontsize>70</fontsize>
+			</person>
+		</talking>
+	</segment>
+</story>
