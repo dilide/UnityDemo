@@ -3,9 +3,7 @@ using System.Collections;
 
 public interface ISheep
 {
-	void Talk(bool isTalking);
+	void Talk(string auPath);
 	bool isTalking();
-	void SetBubbleVisible(bool visible);
-	void SetBubbleContent(string text);
-	void SetAudio2Play(string auPath);
+	void SetBubbleContent(string text, int fontsize);
 }

@@ -3,53 +3,94 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 
-public class StorySegment{
-	public List<string> talking;
-	public List<string> shutup;
-	public string content;
+public struct StoryPerson
+{
+	public string name;
 	public string audio;
-	public int interval = 0;
+	public string content;
+	public int fontSize;
+
+	public StoryPerson(string _name)
+	{
+		name = _name;
+		audio = "";
+		content = "";
+		fontSize = 75;
+	}
+}
+
+public struct StoryPlayer
+{
+	public string name;
+	public bool isPlaying;
+
+	public StoryPlayer(string _name)
+	{
+		name = _name;
+		isPlaying = false;
+	}
+}
+
+public class StorySegment{
+	public List<StoryPerson> talking;
+	public List<StoryPlayer> players;
 
 	public StorySegment(XmlElement eleSegment)
 	{
-		talking = new List<string> ();
-		shutup = new List<string> ();
-		content = "";
-		audio = "";
+		talking = new List<StoryPerson> ();
+		players = new List<StoryPlayer> ();
 
 		XmlElement eleTalking = eleSegment["talking"];
 		if(eleTalking != null)
 		{
-			XmlElement sheep = (XmlElement)eleTalking.FirstChild;
-			while(sheep != null)
+			XmlElement elePerson = (XmlElement)eleTalking.FirstChild;
+			while(elePerson != null)
 			{
-				talking.Add(sheep.InnerText);
-				sheep = (XmlElement)sheep.NextSibling;
+				XmlElement eleName = elePerson["name"];
+				if(eleName != null)
+				{
+					StoryPerson p = new StoryPerson(eleName.InnerText);
+					XmlElement eleAudio = elePerson["audio"];
+					if(eleAudio != null)
+						p.audio = eleAudio.InnerText;
+
+					XmlElement eleContent = elePerson["content"];
+					if(eleContent != null)
+						p.content = eleContent.InnerText;
+
+					XmlElement eleFontSize = elePerson["fontsize"];
+					if(eleFontSize != null)
+						p.fontSize = System.Convert.ToInt32(eleFontSize.InnerText);
+
+					talking.Add(p);
+				}
+
+				elePerson = (XmlElement)elePerson.NextSibling;
 			}
 		}
 		
-		XmlElement eleShutup = eleSegment["shutup"];
-		if(eleShutup != null)
+		XmlElement elePlayers = eleSegment["players"];
+		if(elePlayers != null)
 		{
-			XmlElement sheep = (XmlElement)eleShutup.FirstChild;
-			while(sheep != null)
+			XmlElement elePlayer = (XmlElement)elePlayers.FirstChild;
+			while(elePlayer != null)
 			{
-				shutup.Add(sheep.InnerText);
-				sheep = (XmlElement)sheep.NextSibling;
+				XmlElement eleName = elePlayer["name"];
+				if(eleName != null)
+				{
+					StoryPlayer p = new StoryPlayer(eleName.InnerText);
+
+					XmlElement elePlaying = elePlayer["playing"];
+					if(elePlaying != null)
+					{
+						p.isPlaying = System.Convert.ToBoolean(elePlaying.InnerText);
+					}
+
+					players.Add(p);
+				}
+				
+				elePlayer = (XmlElement)elePlayer.NextSibling;
 			}
-		}
-
-		XmlElement eleContent = eleSegment["content"];
-		if (eleContent != null)
-			content = eleContent.InnerText;
-
-		XmlElement eleAudio = eleSegment["audio"];
-		if(eleAudio != null)
-			audio = eleAudio.InnerText;
-
-		XmlElement eleInterval = eleSegment ["interval"];
-		if (eleInterval != null) {
-			interval = System.Convert.ToInt32(eleInterval.InnerText);
 		}
 	}
 }

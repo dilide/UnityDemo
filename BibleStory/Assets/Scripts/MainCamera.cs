@@ -29,7 +29,7 @@ public class MainCamera : MonoBehaviour {
 			IPlayer p = (IPlayer)obj.GetComponent(typeof(IPlayer));
 			if(p!=null)
 			{
-				p.Play();
+				p.setPlaying(true);
 			}
 		}
 	}

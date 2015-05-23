@@ -2,5 +2,5 @@
 using System.Collections;
 
 public interface IPlayer{
-	void Play();
+	void setPlaying(bool _playing);
 }

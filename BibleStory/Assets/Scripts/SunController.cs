@@ -36,17 +36,17 @@ public class SunController : MonoBehaviour,IPlayer {
 
 			if(isForward)
 			{
-				objSunlight.transform.Rotate (0, 0, Time.deltaTime * Random.Range(30, 100));
+				objSunlight.transform.Rotate (0, 0, Time.deltaTime * Random.Range(10, 50));
 			}
 			else
 			{
-				objSunlight.transform.Rotate (0, 0, -Time.deltaTime * Random.Range(30, 100));
+				objSunlight.transform.Rotate (0, 0, -Time.deltaTime * Random.Range(10, 50));
 			}
 		}
 	}
-
-	public void Play()
+	
+	public void setPlaying(bool _playing)
 	{
-		isPlaying = !isPlaying;
+		isPlaying = _playing;
 	}
 }
