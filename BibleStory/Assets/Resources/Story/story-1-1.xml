@@ -3,7 +3,7 @@
 		<talking>
 			<person>
 				<name>lele</name>
-				<audio>Audio/Common/lele-1</audio>
+				<audio begin="0" end="100">Audio/Common/lele-1</audio>
 				<content>小朋友们，大家好，我是大家的新朋友，给大家带来喜乐的小绵羊姐姐——乐乐</content>
 			</person>
 		</talking>

@@ -5,8 +5,8 @@ public class SunController : MonoBehaviour,IPlayer {
 	public GameObject objSunlight;
 	public GameObject objSunface;
 
-	public bool isPlaying = false;
-	private bool isForward = true;
+	public bool playing = false;
+	private bool forward = true;
 
 	private float lastPlayTime = 0;
 	private float currentPlayTime = 5;
@@ -26,15 +26,15 @@ public class SunController : MonoBehaviour,IPlayer {
 
 	void FixedUpdate()
 	{
-		if (isPlaying) {
+		if (playing) {
 			if(lastPlayTime+currentPlayTime < Time.time)
 			{
 				lastPlayTime = Time.time;
 				currentPlayTime = Random.Range(minPlayTime, maxPlayTime);
-				isForward = !isForward;
+				forward = !forward;
 			}
 
-			if(isForward)
+			if(forward)
 			{
 				objSunlight.transform.Rotate (0, 0, Time.deltaTime * Random.Range(10, 50));
 			}
@@ -47,6 +47,11 @@ public class SunController : MonoBehaviour,IPlayer {
 	
 	public void setPlaying(bool _playing)
 	{
-		isPlaying = _playing;
+		playing = _playing;
+	}
+	
+	public bool isPlaying()
+	{
+		return playing;
 	}
 }

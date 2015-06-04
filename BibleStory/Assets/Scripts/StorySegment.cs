@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 
-public struct StoryPerson
+public class StoryPerson
 {
 	public string name;
 	public string audio;
 	public string content;
 	public int fontSize;
+	public float auBegin;
+	public float auEnd;
 
 	public StoryPerson(string _name)
 	{
@@ -16,10 +18,12 @@ public struct StoryPerson
 		audio = "";
 		content = "";
 		fontSize = 75;
+		auBegin = 0.0f;
+		auEnd = float.MaxValue;
 	}
 }
 
-public struct StoryPlayer
+public class StoryPlayer
 {
 	public string name;
 	public bool isPlaying;
@@ -52,7 +56,16 @@ public class StorySegment{
 					StoryPerson p = new StoryPerson(eleName.InnerText);
 					XmlElement eleAudio = elePerson["audio"];
 					if(eleAudio != null)
+					{
 						p.audio = eleAudio.InnerText;
+						XmlAttribute attBegin = eleAudio.Attributes["begin"];
+						if(attBegin != null)
+							p.auBegin = (float)System.Convert.ToDouble(attBegin.Value);
+
+						XmlAttribute attEnd = eleAudio.Attributes["end"];
+						if(attEnd != null)
+							p.auEnd = (float)System.Convert.ToDouble(attEnd.Value);
+					}
 
 					XmlElement eleContent = elePerson["content"];
 					if(eleContent != null)

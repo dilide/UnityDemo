@@ -6,6 +6,7 @@ public class SheepController : MonoBehaviour, ISheep {
 	public GameObject sheepMouth;
 	public GameObject bubble;
 	public Text textContent;
+	public StoryPerson storyPerson;
 
 	private bool talking = false;
 	private AudioSource audio2Play = null;
@@ -35,15 +36,23 @@ public class SheepController : MonoBehaviour, ISheep {
 			if(ani != null)
 				ani.SetBool("isTalking",talking);
 		}
+
+		if (audio2Play.isPlaying) {
+			if(audio2Play.time < storyPerson.auBegin)
+				audio2Play.time = storyPerson.auBegin;
+			if(audio2Play.time > storyPerson.auEnd)
+				audio2Play.Stop();
+		}
 	}
 	
 	void OnGUI(){
 //		DisplayContent ();
 	}
 	
-	public void Talk(string auPath)
+	public void Talk(StoryPerson person)
 	{
-		if (auPath == "") {
+		storyPerson = person;
+		if (storyPerson == null || storyPerson.audio == "") {
 			SetBubbleContent("",0);
 			if(audio2Play != null)
 			{
@@ -52,7 +61,8 @@ public class SheepController : MonoBehaviour, ISheep {
 			return;
 		}
 
-		StartCoroutine(SetAudio (auPath));
+		StartCoroutine(SetAudio (storyPerson.audio));
+		SetBubbleContent(storyPerson.content,storyPerson.fontSize);
 	}
 
 	public bool isTalking()
@@ -60,7 +70,7 @@ public class SheepController : MonoBehaviour, ISheep {
 		return talking;
 	}
 
-	public void SetBubbleContent(string text, int fontsize)
+	protected void SetBubbleContent(string text, int fontsize)
 	{
 		textContent.text = text;
 		if (text == null || text == "") {
@@ -87,7 +97,7 @@ public class SheepController : MonoBehaviour, ISheep {
 			SetBubbleContent("",0);
 			return false;
 		}
-		
+
 		audio2Play.clip = clip;
 		audio2Play.Play ();
 		return true;

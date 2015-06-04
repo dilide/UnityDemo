@@ -9,7 +9,7 @@
 		<talking><sheep>boysheep</sheep></talking>
 		<shutup><sheep>girlsheep</sheep></shutup>
 		<content>天主竟这样爱了世界，&#xA;甚至赐下自己的独生子，&#xA;使凡信仰祂的人不至丧亡，&#xA;反而活得永生</content>
-		<audio>Audio/Story-1-1-1</audio>
+		<audio begin="2" end="7">Audio/Story-1-1-1</audio>
 		<interval>5</interval>
 	</segment>
 	<segment>

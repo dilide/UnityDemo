@@ -39,15 +39,10 @@ public class StorySpeaker : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (story == null)
+		if (story == null || story.CurrentSegment == null)
 			return;
 
-		if (story.CurrentSegment == null)
-			return;
-
-		bool touched = Input.GetButton ("Fire1");
-		if(touched == false)
-			touched = Input.GetKey (KeyCode.Space);
+		bool touched = Common.isTouched ();
 
 		if (touched == false)
 			return;
@@ -59,10 +54,7 @@ public class StorySpeaker : MonoBehaviour {
 			return;
 		}
 
-		if ((lastTouchTime + interval) < Time.time) {
-			lastTouchTime = Time.time;
-			PlayNext();
-		}
+		PlayNext ();
 	}
 
 	void PlayNext()
@@ -95,8 +87,7 @@ public class StorySpeaker : MonoBehaviour {
 			{
 				ISheep s = (ISheep)obj.GetComponent (typeof(ISheep));
 				if (s != null) {
-					s.Talk(p.audio);
-					s.SetBubbleContent(p.content,p.fontSize);
+					s.Talk(p);
 
 					allPersons.Remove(obj);
 				}
@@ -110,7 +101,7 @@ public class StorySpeaker : MonoBehaviour {
 			{
 				ISheep s = (ISheep)obj.GetComponent (typeof(ISheep));
 				if (s != null) {
-					s.Talk("");
+					s.Talk(null);
 				}
 			}
 		}

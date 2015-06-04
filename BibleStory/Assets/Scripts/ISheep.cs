@@ -3,7 +3,6 @@ using System.Collections;
 
 public interface ISheep
 {
-	void Talk(string auPath);
+	void Talk(StoryPerson person);
 	bool isTalking();
-	void SetBubbleContent(string text, int fontsize);
 }

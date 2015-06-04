@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LightController : MonoBehaviour,IPlayer {
-	public bool isPlaying = false;
+	public bool playing = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,11 +16,15 @@ public class LightController : MonoBehaviour,IPlayer {
 
 	void FixedUpdate()
 	{
-		gameObject.GetComponent<Renderer>().enabled = isPlaying;
+		gameObject.GetComponent<Renderer>().enabled = playing;
 	}
 
 	public void setPlaying(bool _playing)
 	{
-		isPlaying = _playing;
+		playing = _playing;
+	}
+	public bool isPlaying()
+	{
+		return playing;
 	}
 }
