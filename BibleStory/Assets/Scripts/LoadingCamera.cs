@@ -2,10 +2,24 @@
 using System.Collections;
 
 public class LoadingCamera : MonoBehaviour {
+	public GameObject login;
+	public GameObject menu;
+	public GameObject levels;
 
 	// Use this for initialization
 	void Start () {
-		string name = PlayerPrefs.GetString ("Name", "");
+		string kidname = PlayerPrefs.GetString ("KidName", "");
+
+		if (kidname == "") {
+			login.SetActive (true);
+			menu.SetActive (false);
+			levels.SetActive(false);
+		} else {
+			login.SetActive (false);
+			menu.SetActive (true);
+			levels.SetActive(true);
+		}
+		login.SetActive (kidname == "");
 	}
 	
 	// Update is called once per frame

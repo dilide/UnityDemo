@@ -17,7 +17,7 @@ public class StoryMenu : MonoBehaviour {
 
 	public void btnBackClicked()
 	{
-		Application.LoadLevel("Main");
+		Application.LoadLevel("Loading");
 	}
 
 	public void btnNextClicked()

@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class StoryLevelsContainer : MonoBehaviour {
 	public GameObject storyLevelModel;
 	public List<GameObject> storyLevels;
+	public Text welcome;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		welcome.text = "欢迎你，"+PlayerPrefs.GetString ("KidName", "") + "小朋友";
 	}
 	
 	// Update is called once per frame
