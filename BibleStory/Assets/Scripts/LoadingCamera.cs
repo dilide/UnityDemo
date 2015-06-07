@@ -9,6 +9,7 @@ public class LoadingCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		string kidname = PlayerPrefs.GetString ("KidName", "");
+//		string kidname = "";
 
 		if (kidname == "") {
 			login.SetActive (true);
@@ -19,7 +20,6 @@ public class LoadingCamera : MonoBehaviour {
 			menu.SetActive (true);
 			levels.SetActive(true);
 		}
-		login.SetActive (kidname == "");
 	}
 	
 	// Update is called once per frame
